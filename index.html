@@ -1,1505 +1,741 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visão IA - Apresentação Comercial</title>
+    <title>VISAO IA — Gestão Integrada</title>
+    <meta name="description" content="VISAO IA — Plataforma de gestão integrada com tickets, tarefas, RH digital, cliente oculto e muito mais.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            font-family: 'Inter', sans-serif;
+        * { font-family: 'Outfit', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #020617; color: #f1f5f9; }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(100, 116, 139, 0.18);
         }
 
-        .gradient-rutra {
-            background: linear-gradient(135deg, #EE3137 0%, #0045B5 100%);
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(100, 116, 139, 0.15);
+            border-radius: 20px;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .card:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 24px 48px rgba(16, 185, 129, 0.07), 0 0 0 1px rgba(16,185,129,0.08);
+            transform: translateY(-4px);
         }
 
-        .gradient-gold {
-            background: linear-gradient(135deg, #FFDB25 0%, #FFA500 100%);
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 80% 55% at 50% -5%, rgba(16,185,129,0.18) 0%, transparent 65%),
+                radial-gradient(ellipse 45% 45% at 88% 88%, rgba(6,182,212,0.1) 0%, transparent 55%),
+                #020617;
         }
 
-        .slide {
-            min-height: 100vh;
-            scroll-snap-align: start;
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(100,116,139,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100,116,139,0.035) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
 
-        html {
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-        }
-
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .stat-number {
-            background: linear-gradient(135deg, #EE3137, #0045B5);
+        .text-em {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
+        .btn-main {
+            background: linear-gradient(135deg, #059669, #10b981);
+            box-shadow: 0 4px 24px rgba(16,185,129,0.3);
+            transition: all 0.3s;
+        }
+        .btn-main:hover {
+            box-shadow: 0 4px 40px rgba(16,185,129,0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1.5px solid rgba(16,185,129,0.4);
+            color: #10b981;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: rgba(16,185,129,0.08);
+            border-color: rgba(16,185,129,0.65);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16,185,129,0.09);
+            border: 1px solid rgba(16,185,129,0.22);
+            color: #34d399;
+            padding: 5px 14px;
+            border-radius: 99px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .icon-wrap {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .nav-link { color: #94a3b8; transition: color 0.2s; }
+        .nav-link:hover { color: #10b981; }
+
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        .float { animation: float 4s ease-in-out infinite; }
+
+        @keyframes pglow { 0%,100%{box-shadow:0 0 8px rgba(16,185,129,0.35)} 50%{box-shadow:0 0 26px rgba(16,185,129,0.65)} }
+        .pglow { animation: pglow 2.5s ease-in-out infinite; }
+
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            border-radius: 99px;
+            transition: width 1.5s ease;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+
+        /* Fade-in on scroll */
+        .appear { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .appear.in { opacity: 1; transform: translateY(0); }
     </style>
 </head>
+<body class="antialiased">
 
-<body class="bg-gray-50">
-
-    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 gradient-rutra rounded-lg"></div>
-                <span class="font-bold text-gray-800">Visão IA</span>
-            </div>
-            <div class="hidden md:flex gap-6 text-sm">
-                <a href="#inicio" class="text-gray-600 hover:text-red-600">Início</a>
-                <a href="#problema" class="text-gray-600 hover:text-red-600">Problema</a>
-                <a href="#solucao" class="text-gray-600 hover:text-red-600">Solução</a>
-                <a href="#funcionalidades" class="text-gray-600 hover:text-red-600">Funcionalidades</a>
-                <a href="#ia" class="text-gray-600 hover:text-red-600">IA</a>
-                <a href="#beneficios" class="text-gray-600 hover:text-red-600">Benefícios</a>
-            </div>
-        </div>
-    </nav>
-
-    <section id="inicio" class="slide gradient-rutra flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-20 left-20 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 right-20 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
-        </div>
-        <div class="text-center text-white z-10 px-6">
-            <div class="mb-8 animate-float">
-                <div class="w-24 h-24 bg-white rounded-2xl mx-auto flex items-center justify-center shadow-2xl">
-                    <svg class="w-14 h-14 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black mb-4">Visão IA</h1>
-            <p class="text-xl md:text-2xl font-light mb-8 opacity-90">
-                Gestão inteligente de tarefas com <span class="font-bold text-yellow-300">Inteligência
-                    Artificial</span>
-            </p>
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <span class="bg-white/20 px-4 py-2 rounded-full text-sm">WhatsApp Integrado</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full text-sm">Análise Automática</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full text-sm">Relatórios em Tempo Real</span>
-                <span class="bg-purple-400/40 px-4 py-2 rounded-full text-sm font-semibold">🕵️ Avaliação Oculta</span>
-            </div>
-            <a href="#problema"
-                class="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all">
-                Conheça a Solução
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+<!-- ==============================
+     NAVBAR
+================================= -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass">
+    <div class="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center pglow shadow-lg flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
                 </svg>
+            </div>
+            <div class="leading-tight">
+                <div class="font-black text-white text-sm tracking-widest uppercase">VISAO <span class="text-emerald-400">IA</span></div>
+                <div class="text-slate-500 text-xs font-medium">Gestão Integrada</div>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+            <a href="#problema" class="nav-link">O Problema</a>
+            <a href="#modulos" class="nav-link">Módulos</a>
+            <a href="#eficiencia" class="nav-link">Eficiência</a>
+        </div>
+        <a href="/login" class="btn-main text-white text-sm font-bold px-5 py-2.5 rounded-xl hidden md:block">
+            Acessar o Sistema
+        </a>
+    </div>
+</nav>
+
+<!-- ==============================
+     HERO
+================================= -->
+<section class="hero-bg grid-pattern min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 py-28 text-center">
+        <div class="float mb-10 inline-block">
+            <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-2xl mx-auto flex items-center justify-center pglow shadow-2xl">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="tag mb-7">Gestão Integrada pela VISAO IA</div>
+
+        <h1 class="section-title text-white mb-6" style="font-size: clamp(2.6rem, 6vw, 4.8rem);">
+            Chega de depender de <span class="text-em">apps isolados</span><br>e grupos de conversa
+        </h1>
+
+        <p class="text-slate-400 text-xl max-w-3xl mx-auto mb-12 leading-relaxed">
+            Tickets, tarefas, RH, estoques, documentos e avaliações espalhados entre grupos de WhatsApp, planilhas e aplicativos terceiros — cada um com seu login, seu histórico e seu limite. A VISAO IA centraliza tudo: um único painel, rastreável, organizado e acessível de qualquer lugar.
+        </p>
+
+        <div class="flex justify-center gap-4 flex-wrap">
+            <a href="#problema" class="btn-main text-white font-bold px-9 py-4 rounded-xl text-base">
+                Ver como funciona
+            </a>
+            <a href="#modulos" class="btn-outline font-bold px-9 py-4 rounded-xl text-base">
+                Explorar módulos
             </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="problema" class="slide bg-gray-900 flex items-center py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-yellow-400 font-semibold text-sm uppercase tracking-wider">Pare e Reflita</span>
-                <h2 class="text-4xl md:text-6xl font-bold text-white mt-4 mb-8">
-                    Sua empresa ainda gerencia tudo por <span class="text-red-500">grupos de WhatsApp</span>?
+<!-- ==============================
+     O PROBLEMA
+================================= -->
+<section id="problema" class="py-28">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="tag mb-6">O problema que você já conhece</div>
+                <h2 class="section-title text-white mb-6">
+                    Apps isolados e grupos de conversa não são gestão
                 </h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Dezenas de grupos, mensagens perdidas, sem controle de prazos,
-                    e você nunca sabe se a tarefa foi realmente concluída...
+                <p class="text-slate-400 text-lg leading-relaxed mb-6">
+                    Mensagens se perdem nos grupos. Tarefas somem entre abas de planilha. Cada app terceiro tem seu próprio login, seu próprio histórico — e nenhum conversa com o outro. A equipe gasta mais tempo procurando informação do que resolvendo problema.
+                </p>
+                <p class="text-slate-400 text-lg leading-relaxed">
+                    A VISAO IA transforma isso: cada solicitação vira um ticket com responsável, prazo e histórico. Cada tarefa tem evidência, aprovação e rastreamento. Tudo em um único painel, acessível de qualquer dispositivo.
                 </p>
             </div>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                
-                <div class="bg-gray-800 rounded-3xl p-8 border border-gray-700">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
+
+            <!-- Comparison visual -->
+            <div class="space-y-4">
+                <!-- Antes -->
+                <div class="card p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-wrap bg-red-500/10">
+                            <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
                         </div>
-                        <span class="text-red-400 font-semibold">O Caos Atual</span>
+                        <span class="text-red-400 font-black text-sm uppercase tracking-wider">Antes</span>
                     </div>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 mt-0.5 flex-shrink-0">—</span>
+                            Dezenas de grupos de WhatsApp sem controle
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 mt-0.5 flex-shrink-0">—</span>
+                            Tarefas enviadas no chat e esquecidas
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 mt-0.5 flex-shrink-0">—</span>
+                            Documentos espalhados em drives e e-mails
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 mt-0.5 flex-shrink-0">—</span>
+                            Sem histórico, sem evidência, sem responsável
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Depois -->
+                <div class="card p-6" style="border-color: rgba(16,185,129,0.3)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-wrap bg-emerald-500/10">
+                            <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                            </svg>
+                        </div>
+                        <span class="text-emerald-400 font-black text-sm uppercase tracking-wider">Com a VISAO IA</span>
+                    </div>
+                    <ul class="space-y-2 text-slate-300 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 mt-0.5 flex-shrink-0">+</span>
+                            Tickets com responsável, prazo e histórico completo
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 mt-0.5 flex-shrink-0">+</span>
+                            Tarefas com evidência, aprovação e análise por IA
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 mt-0.5 flex-shrink-0">+</span>
+                            Documentos centralizados e acessíveis de qualquer lugar
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 mt-0.5 flex-shrink-0">+</span>
+                            Tudo rastreado: quem fez, quando e com qual resultado
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================
+     MÓDULOS
+================================= -->
+<section id="modulos" class="py-28 bg-slate-950/40">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20 appear">
+            <div class="tag mb-5">Módulos da Plataforma</div>
+            <h2 class="section-title text-white">Uma plataforma. <span class="text-em">Tudo integrado.</span></h2>
+            <p class="text-slate-400 text-lg mt-5 max-w-2xl mx-auto">Cada módulo resolve um problema real do dia a dia. Juntos, formam uma visão completa da operação.</p>
+        </div>
+
+        <!-- TICKETS -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center mb-20 appear">
+            <div>
+                <div class="flex items-center gap-4 mb-5">
+                    <div class="icon-wrap bg-blue-500/12" style="background: rgba(59,130,246,0.12)">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a3 3 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="tag" style="font-size:0.7rem;padding:3px 10px">Fim dos grupos de WhatsApp</div>
+                    </div>
+                </div>
+                <h3 class="text-white font-black text-2xl mb-4">Tickets pelo WhatsApp,<br>gestão pelo painel</h3>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Qualquer pessoa autorizada abre um chamado diretamente pelo WhatsApp, sem instalar nada. O bot guia pelo processo: escolhe a área, descreve o problema, anexa arquivos se necessário.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    No painel web, gestores veem todos os tickets abertos e fechados, com filtros por área, unidade e data. Cada ticket tem histórico completo de comentários, responsável e tempo de resolução. Chega de mensagem perdida.
+                </p>
+            </div>
+            <div class="card p-8">
+                <div class="text-slate-400 text-sm font-bold uppercase tracking-wider mb-6">Fluxo de um Ticket</div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-xs flex-shrink-0">1</div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Solicitação no WhatsApp</div>
+                            <div class="text-slate-500 text-xs">Usuário autorizado envia mensagem para o bot</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-xs flex-shrink-0">2</div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Ticket criado automaticamente</div>
+                            <div class="text-slate-500 text-xs">Registrado no sistema com número, área e prazo</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-xs flex-shrink-0">3</div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Gestor é notificado</div>
+                            <div class="text-slate-500 text-xs">Responsável pela área recebe aviso no WhatsApp</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-xs flex-shrink-0">4</div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Resolução com histórico</div>
+                            <div class="text-slate-500 text-xs">Comentários, anexos e tempo de resolução registrados</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAREFAS + IA -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center mb-20 appear" style="direction: rtl">
+            <div style="direction: ltr">
+                <div class="flex items-center gap-4 mb-5">
+                    <div class="icon-wrap" style="background: rgba(139,92,246,0.12)">
+                        <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="tag" style="font-size:0.7rem;padding:3px 10px;background:rgba(139,92,246,0.09);border-color:rgba(139,92,246,0.25);color:#a78bfa">Correção por Inteligência Artificial</div>
+                    </div>
+                </div>
+                <h3 class="text-white font-black text-2xl mb-4">Tarefas recorrentes com<br>verificação por IA</h3>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Crie <strong class="text-white">modelos de tarefas recorrentes</strong> que o sistema dispara automaticamente na frequência que você definir — diária, semanal ou mensal. Cada modelo tem título, descrição, prazo e uma configuração simples: <strong class="text-white">verificação por IA ativada ou não</strong>.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Exemplos práticos: <em class="text-slate-300">"Foto dos banheiros limpos às 10h"</em>, <em class="text-slate-300">"Conferência do estoque de higiene"</em>, <em class="text-slate-300">"Foto da vitrine organizada"</em>. O colaborador recebe a tarefa no WhatsApp, tira a foto, responde — e a IA já faz a análise antes do gestor precisar abrir o painel.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Antes mesmo do gestor abrir, a <strong class="text-white">inteligência artificial analisa automaticamente</strong> as evidências enviadas e dá um parecer: <span class="text-emerald-400 font-semibold">Ótimo</span>, <span class="text-amber-400 font-semibold">OK</span> ou <span class="text-red-400 font-semibold">Reprovado</span>. O gestor aprova ou rejeita com base nessa análise.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    Se rejeitada, a tarefa entra no fluxo PDCA: o colaborador recebe o motivo e precisa corrigir dentro do prazo. Tudo fica registrado no histórico.
+                </p>
+            </div>
+            <div style="direction: ltr">
+                <div class="card p-7">
+                    <div class="text-slate-400 text-sm font-bold uppercase tracking-wider mb-5">Exemplo de Tarefa Recorrente</div>
+                    <div class="p-4 rounded-xl mb-4" style="background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2)">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-white font-bold text-sm">Foto dos banheiros limpos</span>
+                            <span class="text-xs font-semibold text-violet-400 bg-violet-900/30 rounded-lg px-2.5 py-1">Diária</span>
+                        </div>
+                        <div class="text-slate-500 text-xs mb-3">Enviar foto comprovando limpeza e organização às 10h</div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+                                <div class="w-8 h-4 rounded-full bg-emerald-500/30 border border-emerald-500/40 flex items-center justify-end pr-0.5">
+                                    <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                                </div>
+                                Verificação por IA ativada
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-3">Análise automática da IA</div>
                     <div class="space-y-3">
-                        <div class="bg-gray-700/50 rounded-xl p-4 flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                FIN</div>
-                            <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Grupo Financeiro</p>
-                                <p class="text-gray-400 text-xs">47 mensagens não lidas</p>
+                        <div class="p-3 rounded-xl" style="background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.2)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 flex-shrink-0"></div>
+                                <span class="text-emerald-400 font-black text-xs uppercase tracking-wide">Ótimo</span>
                             </div>
+                            <p class="text-slate-400 text-xs mt-1">Foto clara, banheiro visivelmente limpo e organizado.</p>
                         </div>
-                        <div class="bg-gray-700/50 rounded-xl p-4 flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                RH</div>
-                            <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Grupo RH - Urgente</p>
-                                <p class="text-gray-400 text-xs">23 mensagens não lidas</p>
+                        <div class="p-3 rounded-xl" style="background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></div>
+                                <span class="text-amber-400 font-black text-xs uppercase tracking-wide">OK</span>
                             </div>
+                            <p class="text-slate-400 text-xs mt-1">Concluída com ressalvas. Gestor decide se aprova ou pede ajuste.</p>
                         </div>
-                        <div class="bg-gray-700/50 rounded-xl p-4 flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                OP</div>
-                            <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Operação Posto 1</p>
-                                <p class="text-gray-400 text-xs">89 mensagens não lidas</p>
+                        <div class="p-3 rounded-xl" style="background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.2)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-400 flex-shrink-0"></div>
+                                <span class="text-red-400 font-black text-xs uppercase tracking-wide">Reprovado</span>
                             </div>
-                        </div>
-                        <div class="bg-gray-700/50 rounded-xl p-4 flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                TI</div>
-                            <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Suporte TI</p>
-                                <p class="text-gray-400 text-xs">12 mensagens não lidas</p>
-                            </div>
-                        </div>
-                        <div class="bg-gray-700/50 rounded-xl p-4 flex items-center gap-3 opacity-50">
-                            <div
-                                class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                +8</div>
-                            <div class="flex-1">
-                                <p class="text-gray-400 text-sm">E mais 8 grupos...</p>
-                            </div>
+                            <p class="text-slate-400 text-xs mt-1">Foto fora do local ou insuficiente. PDCA acionado automaticamente.</p>
                         </div>
                     </div>
-                    <div class="mt-6 p-4 bg-red-900/30 rounded-xl border border-red-800">
-                        <p class="text-red-300 text-sm text-center">
-                            <span class="font-bold">Resultado:</span> Informações perdidas, retrabalho constante, zero
-                            rastreabilidade
+                </div>
+            </div>
+        </div>
+
+        <!-- CLIENTE OCULTO -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center mb-20 appear">
+            <div>
+                <div class="flex items-center gap-4 mb-5">
+                    <div class="icon-wrap" style="background: rgba(251,191,36,0.1)">
+                        <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="tag" style="font-size:0.7rem;padding:3px 10px;background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.25);color:#fbbf24">Avaliação anônima</div>
+                    </div>
+                </div>
+                <h3 class="text-white font-black text-2xl mb-4">Cliente Oculto com<br>ação corretiva automática</h3>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Avaliadores cadastrados visitam as unidades e respondem um questionário pelo WhatsApp, de forma anônima. Avaliam atendimento, limpeza, processos — qualquer critério que você configurar.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Quando uma nota cai abaixo do limite configurado, o sistema <strong class="text-white">cria automaticamente um PDCA corretivo</strong> para o gerente da unidade. O gerente responde, indica o colaborador envolvido e anexa o plano de ação.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    Após aprovação, o sistema monitora com <strong class="text-white">10 avaliações de acompanhamento</strong> para verificar se a melhora se manteve. Resultado acima do limite? Gera um PDCA de reconhecimento.
+                </p>
+            </div>
+            <div class="card p-7">
+                <div class="text-slate-400 text-sm font-bold uppercase tracking-wider mb-6">Ciclo de Avaliação</div>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3 text-sm">
+                        <div class="w-6 h-6 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-xs flex-shrink-0 mt-0.5">1</div>
+                        <div><span class="text-white font-semibold">Avaliação anônima</span> <span class="text-slate-500">— questionário preenchido pelo cliente oculto no WhatsApp</span></div>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <div class="w-6 h-6 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-xs flex-shrink-0 mt-0.5">2</div>
+                        <div><span class="text-white font-semibold">Nota calculada</span> <span class="text-slate-500">— média das respostas por critério</span></div>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <div class="w-6 h-6 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-xs flex-shrink-0 mt-0.5">3</div>
+                        <div><span class="text-white font-semibold">PDCA gerado automaticamente</span> <span class="text-slate-500">— se nota abaixo do limite definido</span></div>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <div class="w-6 h-6 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-xs flex-shrink-0 mt-0.5">4</div>
+                        <div><span class="text-white font-semibold">Gerente responde e supervisor aprova</span> <span class="text-slate-500">— plano de ação com prazo</span></div>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <div class="w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-xs flex-shrink-0 mt-0.5">5</div>
+                        <div><span class="text-white font-semibold">10 avaliações de acompanhamento</span> <span class="text-slate-500">— para confirmar que a melhora se manteve</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRID: 4 módulos menores -->
+        <div class="grid md:grid-cols-2 gap-8 appear">
+
+            <!-- Entrada de Notas -->
+            <div class="card p-8">
+                <div class="flex items-start gap-5">
+                    <div class="icon-wrap" style="background: rgba(239,68,68,0.1)">
+                        <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-black text-xl mb-3">Entrada de Notas Fiscais</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            Fluxo completo de rastreamento: a equipe cadastra a nota pendente, o responsável assina e encaminha, o auditor verifica e libera. Se houver problema, a nota volta com o motivo e fica em correção pendente.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed text-sm mt-3">
+                            Cada nota tem seu histórico de movimentações. O sistema também suporta <strong class="text-white">solicitações de código de barras</strong> vinculadas diretamente às notas.
+                        </p>
+                        <div class="mt-5 flex flex-wrap gap-2">
+                            <span class="text-xs font-semibold text-slate-500 bg-slate-800/70 rounded-lg px-3 py-1.5">Pendente</span>
+                            <span class="text-slate-600 self-center text-xs">→</span>
+                            <span class="text-xs font-semibold text-slate-500 bg-slate-800/70 rounded-lg px-3 py-1.5">Assinado</span>
+                            <span class="text-slate-600 self-center text-xs">→</span>
+                            <span class="text-xs font-semibold text-emerald-600 bg-emerald-900/30 rounded-lg px-3 py-1.5">Auditado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estoques -->
+            <div class="card p-8">
+                <div class="flex items-start gap-5">
+                    <div class="icon-wrap" style="background: rgba(6,182,212,0.1)">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-black text-xl mb-3">Controle de Estoques</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            Auditoria de inventário com comparativo entre períodos. O auditor registra as quantidades de cada item e o sistema calcula automaticamente as diferenças em relação à auditoria anterior.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed text-sm mt-3">
+                            Fotos do estoque são anexadas como evidência. Filtros por unidade e período permitem acompanhar a evolução ao longo do tempo e identificar divergências.
                         </p>
                     </div>
                 </div>
+            </div>
 
-                <div
-                    class="bg-gradient-to-br from-green-900/30 to-blue-900/30 rounded-3xl p-8 border border-green-700/50">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <span class="text-green-400 font-semibold">A Nova Realidade</span>
+            <!-- Documentos -->
+            <div class="card p-8">
+                <div class="flex items-start gap-5">
+                    <div class="icon-wrap" style="background: rgba(16,185,129,0.1)">
+                        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+                        </svg>
                     </div>
-                    <div class="text-center py-8">
-                        <div
-                            class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/30">
-                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Um único número</h3>
-                        <p class="text-gray-400 mb-6">Para tudo que sua empresa precisa</p>
-                        <div class="grid grid-cols-2 gap-3 text-sm">
-                            <div class="bg-white/10 rounded-lg p-3 text-gray-300">✓ Tarefas diárias</div>
-                            <div class="bg-white/10 rounded-lg p-3 text-gray-300">✓ Tickets de suporte</div>
-                            <div class="bg-white/10 rounded-lg p-3 text-gray-300">✓ Solicitações entre áreas</div>
-                            <div class="bg-white/10 rounded-lg p-3 text-gray-300">✓ Envio de documentos</div>
-                            <div class="bg-white/10 rounded-lg p-3 text-gray-300">✓ Fotos e relatórios</div>
-                            <div class="bg-white/10 rounded-lg p-3 text-gray-300">✓ Métricas em tempo real</div>
-                            <div
-                                class="bg-purple-500/20 rounded-lg p-3 text-purple-300 col-span-2 text-center font-medium">
-                                🕵️ Avaliação Oculta</div>
-                        </div>
+                    <div>
+                        <h3 class="text-white font-black text-xl mb-3">Documentos e Licenças</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            Centralize alvarás, licenças, contratos e certificados em um único lugar. Acesse qualquer documento de qualquer dispositivo, a qualquer hora, sem precisar ir até o escritório ou ligar para alguém.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed text-sm mt-3">
+                            O sistema monitora as datas de vencimento e envia <strong class="text-white">alertas automáticos pelo WhatsApp</strong> com 30, 15 e 7 dias de antecedência. Nunca mais um alvará vence sem aviso.
+                        </p>
                     </div>
-                    <div class="mt-6 p-4 bg-green-900/30 rounded-xl border border-green-700">
-                        <p class="text-green-300 text-sm text-center">
-                            <span class="font-bold">Resultado:</span> Tudo centralizado, rastreável e com análise
-                            automática por IA
+                </div>
+            </div>
+
+            <!-- RH Digital -->
+            <div class="card p-8">
+                <div class="flex items-start gap-5">
+                    <div class="icon-wrap" style="background: rgba(139,92,246,0.1)">
+                        <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-black text-xl mb-3">RH Digital</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            Todos os documentos dos seus colaboradores em formato digital e organizados: RG, CPF, comprovante de residência, ASO, atestados mensais e muito mais. Acesso imediato, sem gavetas e sem papel perdido.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed text-sm mt-3">
+                            Monitoramento global por unidade mostra quais funcionários estão com documentação em dia. O workflow de desligamento garante que todos os documentos de saída sejam coletados e registrados corretamente.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="slide bg-white flex items-center py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Veja na Prática</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2">Como funciona no WhatsApp</h2>
-                <p class="text-xl text-gray-600 mt-4">Fluxo completo de execução de tarefas</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12">
-                
-                <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        <span
-                            class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold">1</span>
-                        Execução de Tarefa Diária
-                    </h3>
-                    <div class="bg-gray-100 rounded-3xl p-6 max-w-sm mx-auto">
-                        
-                        <div class="bg-green-600 rounded-t-2xl p-4 -mx-6 -mt-6 mb-4 flex items-center gap-3">
-                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                                <span class="text-green-600 font-bold text-xs">HD</span>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Visão IA</p>
-                                <p class="text-green-200 text-xs">online</p>
-                            </div>
+<!-- ==============================
+     EFICIÊNCIA
+================================= -->
+<section id="eficiencia" class="py-28">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="appear">
+                <div class="tag mb-6">Métricas de Desempenho</div>
+                <h2 class="section-title text-white mb-6">
+                    Eficiência do gestor<br><span class="text-em">calculada automaticamente</span>
+                </h2>
+                <p class="text-slate-400 text-lg leading-relaxed mb-5">
+                    O sistema calcula um índice de eficiência para cada colaborador e gestor com base em múltiplas fontes de dados — não apenas uma área, mas a operação completa.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
                         </div>
-
-                        <div class="space-y-3">
-                            
-                            <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%]">
-                                <p class="text-sm text-gray-800 mb-2">📋 <strong>Nova Tarefa!</strong></p>
-                                <p class="text-sm text-gray-600 mb-2">Foto panorâmica do posto</p>
-                                <p class="text-xs text-gray-400">⏰ Prazo: Hoje às 18:00</p>
-                            </div>
-
-                            <div class="bg-green-100 rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] ml-auto">
-                                <p class="text-sm text-gray-800">Tarefa concluída! Segue foto:</p>
-                            </div>
-
-                            <div class="bg-green-100 rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] ml-auto">
-                                <div class="bg-gray-300 rounded-xl h-32 flex items-center justify-center mb-2">
-                                    <svg class="w-12 h-12 text-gray-500" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <p class="text-xs text-gray-500">📷 foto_posto.jpg</p>
-                            </div>
-
-                            <div
-                                class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%] border-l-4 border-green-500">
-                                <p class="text-sm text-gray-800 mb-2">🤖 <strong>Análise da IA:</strong></p>
-                                <div class="bg-green-50 rounded-lg p-2 mb-2">
-                                    <span
-                                        class="bg-green-500 text-white text-xs px-2 py-0.5 rounded font-bold">ÓTIMO</span>
-                                </div>
-                                <p class="text-xs text-gray-600">"Foto clara mostrando toda a área do posto. Ambiente
-                                    limpo e organizado."</p>
-                            </div>
-
-                            <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%]">
-                                <p class="text-sm text-gray-800">✅ Tarefa registrada com sucesso!</p>
-                                <p class="text-xs text-gray-500 mt-1">Seu gestor foi notificado.</p>
-                            </div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Tarefas no prazo</div>
+                            <div class="text-slate-500 text-xs mt-0.5">Percentual de tarefas concluídas dentro do prazo definido</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Tickets resolvidos</div>
+                            <div class="text-slate-500 text-xs mt-0.5">Tempo médio de resolução e volume de chamados atendidos</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Nota do Cliente Oculto</div>
+                            <div class="text-slate-500 text-xs mt-0.5">Média das avaliações anônimas das unidades sob responsabilidade</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-red-500/15 border border-red-500/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Infrações e penalidades</div>
+                            <div class="text-slate-500 text-xs mt-0.5">Ocorrências registradas por auditores subtraem pontos do índice</div>
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        <span
-                            class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-sm font-bold">2</span>
-                        Abertura de Ticket/Solicitação
-                    </h3>
-                    <div class="bg-gray-100 rounded-3xl p-6 max-w-sm mx-auto">
-                        
-                        <div class="bg-green-600 rounded-t-2xl p-4 -mx-6 -mt-6 mb-4 flex items-center gap-3">
-                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                                <span class="text-green-600 font-bold text-xs">HD</span>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Visão IA</p>
-                                <p class="text-green-200 text-xs">online</p>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            
-                            <div class="bg-green-100 rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] ml-auto">
-                                <p class="text-sm text-gray-800">menu</p>
-                            </div>
-
-                            <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%]">
-                                <p class="text-sm text-gray-800 mb-3">Olá! Como posso ajudar?</p>
-                                <div class="space-y-2">
-                                    <div
-                                        class="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center text-sm text-blue-600">
-                                        📋 Minhas Tarefas</div>
-                                    <div
-                                        class="bg-blue-50 border border-blue-200 rounded-lg p-2 text-center text-sm text-blue-600 font-medium">
-                                        🎫 Abrir Ticket</div>
-                                    <div
-                                        class="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center text-sm text-blue-600">
-                                        📊 Meu Status</div>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%]">
-                                <p class="text-sm text-gray-800 mb-3">Selecione a área:</p>
-                                <div class="space-y-2">
-                                    <div
-                                        class="bg-blue-50 border border-blue-200 rounded-lg p-2 text-center text-sm text-blue-600 font-medium">
-                                        💰 Financeiro</div>
-                                    <div
-                                        class="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center text-sm text-gray-600">
-                                        👥 RH</div>
-                                    <div
-                                        class="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center text-sm text-gray-600">
-                                        🔧 TI</div>
-                                </div>
-                            </div>
-
-                            <div class="bg-green-100 rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] ml-auto">
-                                <p class="text-sm text-gray-800">Preciso de segunda via do boleto de fornecedor ABC</p>
-                            </div>
-
-                            <div
-                                class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%] border-l-4 border-blue-500">
-                                <p class="text-sm text-gray-800 mb-2">✅ <strong>Ticket #1247 criado!</strong></p>
-                                <p class="text-xs text-gray-600">Área: Financeiro</p>
-                                <p class="text-xs text-gray-600">Prazo: 48 horas</p>
-                                <p class="text-xs text-gray-500 mt-2">Você será notificado quando houver resposta.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8">
-                <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900">Enquanto isso, no Dashboard do Gestor...</h3>
-                </div>
-                <div class="grid md:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm">
-                        <div class="text-4xl font-black text-green-600 mb-2">94%</div>
-                        <p class="text-gray-600 text-sm">Tarefas no prazo</p>
-                        <p class="text-xs text-gray-400 mt-1">Última semana</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm">
-                        <div class="text-4xl font-black text-blue-600 mb-2">2.3h</div>
-                        <p class="text-gray-600 text-sm">Tempo médio resposta</p>
-                        <p class="text-xs text-gray-400 mt-1">Tickets financeiro</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm">
-                        <div class="text-4xl font-black text-purple-600 mb-2">156</div>
-                        <p class="text-gray-600 text-sm">Tarefas concluídas</p>
-                        <p class="text-xs text-gray-400 mt-1">Este mês</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-sm">
-                        <div class="text-4xl font-black text-orange-600 mb-2">89%</div>
-                        <p class="text-gray-600 text-sm">Aprovadas pela IA</p>
-                        <p class="text-xs text-gray-400 mt-1">Sem retrabalho</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cliente-oculto"
-        class="slide bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900 flex items-center py-20 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-10 left-10 w-64 h-64 bg-purple-500 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-10 right-10 w-72 h-72 bg-pink-500 rounded-full blur-3xl"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 z-10">
-            <div class="text-center mb-12">
-                <span class="bg-purple-400/30 text-purple-200 px-4 py-1 rounded-full text-sm font-semibold">🕵️ NOVO
-                    RECURSO</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Avaliação Oculta</h2>
-                <p class="text-xl text-gray-300 mt-4 max-w-3xl mx-auto">
-                    Avaliação anônima de colaboradores via WhatsApp que impacta diretamente na eficiência
+                <p class="text-slate-400 text-sm mt-6">
+                    O relatório completo pode ser exportado em PDF e enviado diretamente pelo WhatsApp — útil para feedback individual e reuniões de resultado.
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                
-                <div class="order-2 lg:order-1">
-                    <div class="bg-gray-100 rounded-3xl p-4 md:p-6 max-w-sm mx-auto">
-                        
-                        <div
-                            class="bg-green-600 rounded-t-2xl p-4 -mx-4 md:-mx-6 -mt-4 md:-mt-6 mb-4 flex items-center gap-3">
-                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                                <span class="text-green-600 font-bold text-xs">🕵️</span>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Visão IA</p>
-                                <p class="text-green-200 text-xs">Avaliação Oculta</p>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            
-                            <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%]">
-                                <p class="text-sm text-gray-800 mb-3">🕵️ <strong>Área do Avaliação Oculta</strong></p>
-                                <p class="text-sm text-gray-600 mb-3">Selecione o gerente para avaliar:</p>
-                                <div class="space-y-2">
-                                    <div
-                                        class="bg-purple-50 border border-purple-200 rounded-lg p-2 text-center text-sm text-purple-600 font-medium">
-                                        👤 João Silva - Posto Centro</div>
-                                    <div
-                                        class="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center text-sm text-gray-600">
-                                        👤 Maria Santos - Posto Norte</div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%] border-l-4 border-purple-500">
-                                <p class="text-sm text-gray-800 mb-2">📋 <strong>Pergunta 1/3:</strong></p>
-                                <p class="text-sm text-gray-700 mb-2"><em>"O gerente foi atencioso no atendimento?"</em>
-                                </p>
-                                <p class="text-xs text-gray-500">Digite uma nota de 0 a 10:</p>
-                            </div>
-
-                            <div class="bg-green-100 rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] ml-auto">
-                                <p class="text-sm text-gray-800 font-bold">9</p>
-                            </div>
-
-                            <div
-                                class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%] border-l-4 border-purple-500">
-                                <p class="text-sm text-gray-800 mb-2">📋 <strong>Pergunta 2/3:</strong></p>
-                                <p class="text-sm text-gray-700 mb-2"><em>"O ambiente estava limpo e organizado?"</em>
-                                </p>
-                                <p class="text-xs text-gray-500">Digite uma nota de 0 a 10:</p>
-                            </div>
-
-                            <div
-                                class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[85%] border-l-4 border-green-500">
-                                <p class="text-sm text-gray-800 mb-2">✅ <strong>Avaliação Concluída!</strong></p>
-                                <div class="bg-green-50 rounded-lg p-2 mb-2">
-                                    <p class="text-xs text-gray-600">Gerente: João Silva</p>
-                                    <p class="text-xs text-gray-600">Média: <span
-                                            class="font-bold text-green-600">8.7/10</span></p>
-                                </div>
-                                <p class="text-xs text-gray-500">Obrigado pela sua avaliação anônima!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6 order-1 lg:order-2">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Avaliação 100% Anônima</h4>
-                                <p class="text-gray-300 text-sm">O gerente nunca sabe quem o avaliou. Feedbacks honestos
-                                    e imparciais.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Impacta na Eficiência</h4>
-                                <p class="text-gray-300 text-sm">A média das avaliações é incluída no cálculo de
-                                    eficiência geral do gerente.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Perguntas Personalizáveis</h4>
-                                <p class="text-gray-300 text-sm">Cada gerente pode ter suas próprias perguntas de
-                                    avaliação configuradas no portal.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Acesso Controlado</h4>
-                                <p class="text-gray-300 text-sm">Apenas números cadastrados como clientes ocultos podem
-                                    acessar o fluxo de avaliação.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12 bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                <div class="text-center mb-6">
-                    <h3 class="text-2xl font-bold text-white">Resultado no Dashboard</h3>
-                    <p class="text-gray-300 mt-2">As avaliações aparecem automaticamente nas métricas de eficiência</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white/10 rounded-2xl p-6 text-center border border-white/10">
-                        <div class="text-4xl font-black text-purple-400 mb-2">8.7</div>
-                        <p class="text-gray-300 text-sm">Média Avaliação Oculta</p>
-                        <p class="text-xs text-gray-400 mt-1">João Silva</p>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6 text-center border border-white/10">
-                        <div class="text-4xl font-black text-green-400 mb-2">12</div>
-                        <p class="text-gray-300 text-sm">Avaliações recebidas</p>
-                        <p class="text-xs text-gray-400 mt-1">Este mês</p>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6 text-center border border-white/10">
-                        <div class="text-4xl font-black text-yellow-400 mb-2">+15%</div>
-                        <p class="text-gray-300 text-sm">Eficiência geral</p>
-                        <p class="text-xs text-gray-400 mt-1">Com avaliação oculta</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portal"
-        class="slide bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 flex items-center py-20 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-20 right-20 w-72 h-72 bg-purple-500 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 left-20 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 z-10">
-            <div class="text-center mb-12">
-                <span class="text-purple-300 font-semibold text-sm uppercase tracking-wider">Flexibilidade Total</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-2">Portal Web Completo</h2>
-                <p class="text-xl text-gray-300 mt-4 max-w-3xl mx-auto">
-                    Além do WhatsApp, tarefas e tickets podem ser gerenciados diretamente pelo Dashboard Web
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                
-                <div
-                    class="bg-white/10 backdrop-blur-sm rounded-3xl p-4 md:p-6 border border-white/20 order-2 lg:order-1">
-                    <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-                        
-                        <div class="bg-gray-800 px-4 py-3 flex items-center gap-2">
-                            <div class="flex gap-2">
-                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <div class="flex-1 mx-2 md:mx-4">
-                                <div
-                                    class="bg-gray-700 rounded-lg px-2 md:px-4 py-1 md:py-1.5 text-gray-400 text-xs md:text-sm truncate">
-                                    🔒 visaoia.com.br/dashboard
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="p-4 bg-gray-100">
-                            
-                            <div class="bg-white rounded-xl p-4 mb-4 flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 gradient-rutra rounded-lg"></div>
-                                    <span class="font-bold text-gray-800">Visão IA</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <span class="text-sm text-gray-600">👤 Admin</span>
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-3 gap-2 md:gap-3 mb-3 md:mb-4">
-                                <div class="bg-white rounded-lg p-2 md:p-3 text-center">
-                                    <div class="text-lg md:text-2xl font-bold text-blue-600">12</div>
-                                    <div class="text-[10px] md:text-xs text-gray-500">Tickets</div>
-                                </div>
-                                <div class="bg-white rounded-lg p-3 text-center">
-                                    <div class="text-2xl font-bold text-green-600">8</div>
-                                    <div class="text-xs text-gray-500">Tarefas Hoje</div>
-                                </div>
-                                <div class="bg-white rounded-lg p-3 text-center">
-                                    <div class="text-2xl font-bold text-purple-600">3</div>
-                                    <div class="text-xs text-gray-500">Pendentes</div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white rounded-xl p-4">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="font-semibold text-gray-800 text-sm">Tickets Recentes</span>
-                                    <span class="text-blue-600 text-xs cursor-pointer">+ Novo Ticket</span>
-                                </div>
-                                <div class="space-y-2">
-                                    <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 text-xs px-2 py-0.5 rounded">Pendente</span>
-                                        <span class="text-sm text-gray-700 flex-1">Segunda via boleto</span>
-                                        <span class="text-xs text-gray-400">2h</span>
-                                    </div>
-                                    <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
-                                        <span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded">Em
-                                            análise</span>
-                                        <span class="text-sm text-gray-700 flex-1">Problema no sistema</span>
-                                        <span class="text-xs text-gray-400">4h</span>
-                                    </div>
-                                    <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
-                                        <span
-                                            class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded">Resolvido</span>
-                                        <span class="text-sm text-gray-700 flex-1">Solicitação de férias</span>
-                                        <span class="text-xs text-gray-400">1d</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-4 md:space-y-6 order-1 lg:order-2">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Responda Tickets pelo Dashboard</h4>
-                                <p class="text-gray-300 text-sm">Gestores podem responder tickets diretamente pela
-                                    interface web. A resposta é enviada automaticamente via WhatsApp para o solicitante.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Gerencie Tarefas Visualmente</h4>
-                                <p class="text-gray-300 text-sm">Crie, edite e acompanhe tarefas de toda a equipe.
-                                    Visualize o status em tempo real e receba alertas de atrasos.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Visualize Anexos e Histórico</h4>
-                                <p class="text-gray-300 text-sm">Acesse fotos, documentos e todo o histórico de
-                                    conversas. Tudo organizado e fácil de encontrar.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-2">Acesse de Qualquer Lugar</h4>
-                                <p class="text-gray-300 text-sm">Interface responsiva que funciona perfeitamente em
-                                    desktop, tablet ou celular. Gerencie sua equipe onde estiver.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12 bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                <div class="text-center mb-6">
-                    <h3 class="text-2xl font-bold text-white">Dois Canais, Uma Plataforma</h3>
-                    <p class="text-gray-300 mt-2">Colaboradores usam WhatsApp, gestores usam o Dashboard — tudo
-                        sincronizado em tempo real</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-white font-semibold mb-2">WhatsApp</h4>
-                        <p class="text-gray-400 text-sm">Colaboradores respondem tarefas e abrem tickets pelo app que já
-                            conhecem</p>
-                    </div>
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                            </svg>
-                        </div>
-                        <h4 class="text-white font-semibold mb-2">Sincronizado</h4>
-                        <p class="text-gray-400 text-sm">Respostas do dashboard chegam no WhatsApp e vice-versa
-                            automaticamente</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-white font-semibold mb-2">Dashboard</h4>
-                        <p class="text-gray-400 text-sm">Gestores têm visão completa, relatórios e controle total pela
-                            web</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="solucao" class="slide bg-white flex items-center py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">A Solução</span>
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6">
-                        Deixe a <span class="text-red-600">IA trabalhar por você</span>
-                    </h2>
-                    <p class="text-xl text-gray-600 mb-8">
-                        O Visão IA utiliza <strong>Inteligência Artificial</strong> para analisar automaticamente
-                        cada tarefa concluída, verificando se foi executada corretamente e liberando o gestor para
-                        focar no que realmente importa.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Análise Automática com IA</h4>
-                                <p class="text-gray-600">Claude AI avalia cada tarefa e classifica como Ótimo, OK ou
-                                    Reprovado</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Integração WhatsApp</h4>
-                                <p class="text-gray-600">Colaboradores recebem e respondem tarefas pelo aplicativo que
-                                    já usam</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Dashboard em Tempo Real</h4>
-                                <p class="text-gray-600">Acompanhe tudo de um único lugar com métricas e relatórios
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-4 bg-red-50 rounded-xl p-4 border border-red-200">
-                            <div
-                                class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-red-800">Detecção Anti-Fraude</h4>
-                                <p class="text-red-700">A IA <strong>recusa imagens repetidas</strong> automaticamente,
-                                    evitando finalizações fraudulentas de tarefas</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="bg-gradient-to-br from-blue-50 to-red-50 rounded-3xl p-8">
-                        <div class="bg-white rounded-2xl shadow-xl p-6 mb-4">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-900">Análise da IA</p>
-                                    <p class="text-sm text-gray-500">Tarefa #247 - Limpeza do Posto</p>
-                                </div>
-                            </div>
-                            <div class="bg-green-50 border border-green-200 rounded-xl p-4">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span
-                                        class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">ÓTIMO</span>
-                                </div>
-                                <p class="text-sm text-gray-700">
-                                    "A tarefa foi executada conforme solicitado. A foto mostra a área limpa e
-                                    organizada,
-                                    com todos os itens nos lugares corretos."
-                                </p>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-2xl shadow-xl p-6">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-900">Análise da IA</p>
-                                    <p class="text-sm text-gray-500">Tarefa #248 - Foto das Bombas</p>
-                                </div>
-                            </div>
-                            <div class="bg-red-50 border border-red-200 rounded-xl p-4">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span
-                                        class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">REPROVADO</span>
-                                </div>
-                                <p class="text-sm text-gray-700">
-                                    "A foto está desfocada e não mostra claramente o estado das bombas.
-                                    Solicite uma nova foto com melhor qualidade."
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="funcionalidades" class="slide bg-gray-50 flex items-center py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Recursos Completos</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2">Tudo que você precisa</h2>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">WhatsApp Integrado</h3>
-                    <p class="text-gray-600 text-sm">Colaboradores recebem tarefas, enviam fotos e respondem diretamente
-                        pelo WhatsApp.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Análise com IA</h3>
-                    <p class="text-gray-600 text-sm">Claude AI avalia automaticamente cada tarefa e fornece feedback
-                        instantâneo.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Tarefas Recorrentes</h3>
-                    <p class="text-gray-600 text-sm">Configure uma vez e o sistema cria automaticamente as tarefas
-                        diárias, semanais ou mensais.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Notificações Inteligentes</h3>
-                    <p class="text-gray-600 text-sm">Alertas de tarefas pendentes, atrasadas e prazos próximos do
-                        vencimento.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Métricas de Eficiência</h3>
-                    <p class="text-gray-600 text-sm">Relatórios de desempenho por colaborador, área e período com
-                        rankings.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Sistema de Observadores</h3>
-                    <p class="text-gray-600 text-sm">Gestores podem observar tarefas de outras equipes e receber
-                        notificações.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Tickets entre Agentes</h3>
-                    <p class="text-gray-600 text-sm">Colaboradores podem criar solicitações entre si com notificação
-                        automática.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Anexos em Nuvem</h3>
-                    <p class="text-gray-600 text-sm">Fotos, documentos e vídeos armazenados com segurança na Amazon
-                        S3.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover">
-                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Controle de Acesso</h3>
-                    <p class="text-gray-600 text-sm">Permissões por área, whitelist de números e gestão completa de
-                        usuários.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-sm card-hover border-2 border-purple-200">
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <h3 class="text-lg font-bold text-gray-900">🕵️ Avaliação Oculta</h3>
-                        <span
-                            class="bg-purple-100 text-purple-700 text-xs font-semibold px-2 py-0.5 rounded-full">NOVO</span>
-                    </div>
-                    <p class="text-gray-600 text-sm">Avaliação anônima de colaboradores via WhatsApp. Notas de 0-10
-                        impactam
-                        diretamente na eficiência.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="metricas"
-        class="slide bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center py-20 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-10 right-10 w-64 h-64 bg-purple-500 rounded-full blur-3xl"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 z-10">
-            <div class="text-center mb-16">
-                <span class="text-cyan-400 font-semibold text-sm uppercase tracking-wider">Controle Total</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-2">Métricas de Performance em Tempo Real</h2>
-                <p class="text-xl text-gray-300 mt-4 max-w-3xl mx-auto">
-                    Acompanhe o tempo de resposta dos tickets e a eficiência de cada membro da equipe
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12">
-                
-                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-white font-bold text-xl">Tempo de Resposta dos Tickets</h3>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
-                            <p class="text-gray-400 text-sm mb-1">Tempo Médio</p>
-                            <p class="text-3xl font-bold text-white">2.4<span class="text-lg text-cyan-400">h</span></p>
-                            <p class="text-green-400 text-xs mt-1"> 18% vs mês anterior</p>
-                        </div>
-                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
-                            <p class="text-gray-400 text-sm mb-1">Primeira Resposta</p>
-                            <p class="text-3xl font-bold text-white">15<span class="text-lg text-cyan-400">min</span>
-                            </p>
-                            <p class="text-green-400 text-xs mt-1"> 25% vs mês anterior</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between bg-white/5 rounded-lg p-3">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 bg-green-400 rounded-full"></span>
-                                <span class="text-white text-sm">Financeiro</span>
-                            </div>
-                            <span class="text-cyan-400 font-semibold">1.8h</span>
-                        </div>
-                        <div class="flex items-center justify-between bg-white/5 rounded-lg p-3">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 bg-green-400 rounded-full"></span>
-                                <span class="text-white text-sm">TI</span>
-                            </div>
-                            <span class="text-cyan-400 font-semibold">2.1h</span>
-                        </div>
-                        <div class="flex items-center justify-between bg-white/5 rounded-lg p-3">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 bg-yellow-400 rounded-full"></span>
-                                <span class="text-white text-sm">RH</span>
-                            </div>
-                            <span class="text-yellow-400 font-semibold">3.2h</span>
-                        </div>
-                        <div class="flex items-center justify-between bg-white/5 rounded-lg p-3">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 bg-green-400 rounded-full"></span>
-                                <span class="text-white text-sm">Operações</span>
-                            </div>
-                            <span class="text-cyan-400 font-semibold">2.5h</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-white font-bold text-xl">Eficiência por Colaborador</h3>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div
-                            class="bg-gradient-to-r from-yellow-500/20 to-transparent rounded-xl p-4 border border-yellow-500/30">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-yellow-400 font-bold text-lg"></span>
-                                    <div
-                                        class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                                        MS</div>
-                                    <div>
-                                        <p class="text-white font-medium">Maria Silva</p>
-                                        <p class="text-gray-400 text-xs">Financeiro</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-2xl font-bold text-white">98%</p>
-                                    <p class="text-green-400 text-xs">Eficiência</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 mt-3 text-xs">
-                                <span class="text-gray-400"> 47 tarefas</span>
-                                <span class="text-gray-400"> 1.2h média</span>
-                                <span class="text-green-400"> 46 no prazo</span>
-                            </div>
-                        </div>
-
-                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-gray-400 font-bold text-lg"></span>
-                                    <div
-                                        class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                                        JC</div>
-                                    <div>
-                                        <p class="text-white font-medium">João Costa</p>
-                                        <p class="text-gray-400 text-xs">TI</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-2xl font-bold text-white">94%</p>
-                                    <p class="text-cyan-400 text-xs">Eficiência</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 mt-3 text-xs">
-                                <span class="text-gray-400"> 52 tarefas</span>
-                                <span class="text-gray-400"> 1.8h média</span>
-                                <span class="text-green-400"> 49 no prazo</span>
-                            </div>
-                        </div>
-
-                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-orange-400 font-bold text-lg"></span>
-                                    <div
-                                        class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                                        AL</div>
-                                    <div>
-                                        <p class="text-white font-medium">Ana Lima</p>
-                                        <p class="text-gray-400 text-xs">RH</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-2xl font-bold text-white">91%</p>
-                                    <p class="text-cyan-400 text-xs">Eficiência</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 mt-3 text-xs">
-                                <span class="text-gray-400"> 38 tarefas</span>
-                                <span class="text-gray-400"> 2.1h média</span>
-                                <span class="text-green-400"> 35 no prazo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12 grid md:grid-cols-3 gap-6">
-                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
-                    <div class="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-7 h-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Rankings Automáticos</h4>
-                    <p class="text-gray-400 text-sm">Identifique os melhores desempenhos</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
-                    <div class="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">SLA por Área</h4>
-                    <p class="text-gray-400 text-sm">Configure tempos de resposta esperados</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
-                    <div class="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Relatórios Exportáveis</h4>
-                    <p class="text-gray-400 text-sm">Exporte dados para análises</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="ia" class="slide gradient-rutra flex items-center py-20 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400 rounded-full blur-3xl"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 z-10">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="text-white">
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold">⚡ Tecnologia de
-                        Ponta</span>
-                    <h2 class="text-4xl md:text-5xl font-bold mt-6 mb-6">
-                        Inteligência Artificial que trabalha 24/7
-                    </h2>
-                    <p class="text-xl opacity-90 mb-8">
-                        Nossa IA analisa cada tarefa em segundos, identificando problemas que levariam minutos
-                        do seu tempo. É como ter um assistente incansável verificando tudo para você.
-                    </p>
-                    <div class="grid grid-cols-3 gap-6">
-                        <div class="text-center">
-                            <div class="text-4xl font-black text-yellow-300">3s</div>
-                            <div class="text-sm opacity-80">Tempo de análise</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-black text-yellow-300">95%</div>
-                            <div class="text-sm opacity-80">Precisão</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-black text-yellow-300">24/7</div>
-                            <div class="text-sm opacity-80">Disponível</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                    <h3 class="text-white font-bold text-xl mb-6">Como a IA Avalia</h3>
-                    <div class="space-y-4">
-                        <div class="bg-white rounded-xl p-4">
-                            <div class="flex items-center gap-3 mb-2">
-                                <span
-                                    class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">ÓTIMO</span>
-                                <span class="text-gray-600 text-sm">Tarefa perfeita</span>
-                            </div>
-                            <p class="text-sm text-gray-700">Executada no prazo, com descrição completa e foto
-                                adequada.</p>
-                        </div>
-                        <div class="bg-white rounded-xl p-4">
-                            <div class="flex items-center gap-3 mb-2">
-                                <span
-                                    class="bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">OK</span>
-                                <span class="text-gray-600 text-sm">Aceita com ressalvas</span>
-                            </div>
-                            <p class="text-sm text-gray-700">Pequenos detalhes a melhorar, mas dentro do aceitável.</p>
-                        </div>
-                        <div class="bg-white rounded-xl p-4">
-                            <div class="flex items-center gap-3 mb-2">
-                                <span
-                                    class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">REPROVADO</span>
-                                <span class="text-gray-600 text-sm">Refazer tarefa</span>
-                            </div>
-                            <p class="text-sm text-gray-700">Foto inadequada, tarefa incompleta ou fora do padrão.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="beneficios" class="slide bg-white flex items-center py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-green-600 font-semibold text-sm uppercase tracking-wider">Retorno do
-                    Investimento</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2">Quanto você vai economizar?</h2>
-            </div>
-            <div class="grid md:grid-cols-4 gap-8 mb-16">
-                <div class="text-center">
-                    <div class="text-6xl font-black stat-number mb-2">70%</div>
-                    <p class="text-gray-600">Redução no tempo de verificação</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-black stat-number mb-2">4h</div>
-                    <p class="text-gray-600">Economizadas por dia</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-black stat-number mb-2">50%</div>
-                    <p class="text-gray-600">Menos retrabalho</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-black stat-number mb-2">100%</div>
-                    <p class="text-gray-600">Visibilidade das tarefas</p>
-                </div>
-            </div>
-            <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-3xl p-8 md:p-12">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Mockup de eficiência -->
+            <div class="card p-8 appear">
+                <div class="flex items-center justify-between mb-7">
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Antes vs Depois</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </div>
-                                <span class="text-gray-600">Verificação manual de cada tarefa</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </div>
-                                <span class="text-gray-600">Comunicação fragmentada por vários canais</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </div>
-                                <span class="text-gray-600">Zero visibilidade de métricas</span>
-                            </div>
+                        <div class="text-white font-black text-base">Eficiência da Equipe</div>
+                        <div class="text-slate-500 text-xs mt-0.5">Unidade Centro — Abril 2026</div>
+                    </div>
+                    <div class="text-emerald-400 font-black text-2xl">87%</div>
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-slate-300 text-sm font-semibold">Carlos R.</span>
+                            <span class="text-emerald-400 text-sm font-bold">94%</span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div class="score-bar-fill" style="width: 94%"></div>
                         </div>
                     </div>
                     <div>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-gray-900 font-medium">IA analisa automaticamente cada tarefa</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-gray-900 font-medium">Tudo centralizado no WhatsApp + Dashboard</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-gray-900 font-medium">Relatórios completos em tempo real</span>
-                            </div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-slate-300 text-sm font-semibold">Ana P.</span>
+                            <span class="text-emerald-400 text-sm font-bold">91%</span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div class="score-bar-fill" style="width: 91%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-slate-300 text-sm font-semibold">Marcos T.</span>
+                            <span class="text-amber-400 text-sm font-bold">78%</span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div style="height:100%;width:78%;background:linear-gradient(90deg,#f59e0b,#fb923c);border-radius:99px"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-slate-300 text-sm font-semibold">Juliana S.</span>
+                            <span class="text-amber-400 text-sm font-bold">83%</span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div style="height:100%;width:83%;background:linear-gradient(90deg,#10b981,#06b6d4);border-radius:99px"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-slate-300 text-sm font-semibold">Pedro L.</span>
+                            <span class="text-red-400 text-sm font-bold">61%</span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div style="height:100%;width:61%;background:linear-gradient(90deg,#ef4444,#f87171);border-radius:99px"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide gradient-rutra flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full blur-3xl">
-            </div>
-        </div>
-        <div class="text-center text-white z-10 px-6 max-w-4xl">
-            <div class="mb-8">
-                <div
-                    class="w-20 h-20 bg-white rounded-2xl mx-auto flex items-center justify-center shadow-2xl animate-float">
-                    <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <div class="mt-6 pt-5 border-t border-slate-800 flex items-center gap-2 text-xs text-slate-500">
+                    <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
                     </svg>
+                    Composto por tarefas, tickets, cliente oculto e penalidades
                 </div>
             </div>
-            <h2 class="text-4xl md:text-6xl font-black mb-6">
-                Pronto para transformar sua gestão?
-            </h2>
-            <p class="text-xl md:text-2xl opacity-90 mb-12">
-                Deixe a IA cuidar das verificações enquanto você foca no que realmente importa:
-                <span class="font-bold text-yellow-300">fazer seu negócio crescer.</span>
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/5541987430151?text=Quero%20falar%20sobre%20o%20Visao%20IA" target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all text-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                    Fale Conosco
-                </a>
-                <a href="https://wa.me/5541987430151?text=Quero%20falar%20sobre%20o%20Visao%20IA" target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all text-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    Agendar Demo
-                </a>
-            </div>
-            <div class="mt-16 pt-8 border-t border-white/20">
-                <p class="text-sm opacity-70">
-                    Visão IA © 2025 - Desenvolvido por Rutra
-                </p>
-            </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- ==============================
+     CTA FINAL
+================================= -->
+<section class="py-28 bg-slate-950/40">
+    <div class="max-w-3xl mx-auto px-6 text-center appear">
+        <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-2xl mx-auto flex items-center justify-center mb-8 pglow shadow-xl">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+            </svg>
+        </div>
+        <h2 class="section-title text-white mb-5">Pronto para centralizar<br>a gestão com a VISAO IA?</h2>
+        <p class="text-slate-400 text-lg mb-10">Tickets, tarefas, RH, documentos, estoques e avaliações — tudo em um só lugar, rastreável e acessível de qualquer dispositivo.</p>
+        <a href="/login" class="btn-main text-white font-bold px-10 py-4 rounded-xl text-base inline-block">
+            Acessar o Sistema
+        </a>
+    </div>
+</section>
+
+<!-- ==============================
+     FOOTER
+================================= -->
+<footer class="py-10 border-t border-slate-800/50">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
+                </svg>
+            </div>
+            <span class="font-black text-white text-sm">VISAO <span class="text-emerald-400">IA</span></span>
+        </div>
+        <p class="text-slate-600 text-xs">© 2026 VISAO IA — Plataforma proprietária. Todos os direitos reservados.</p>
+        <a href="/login" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 transition-colors">Acessar o sistema →</a>
+    </div>
+</footer>
+
+<script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.appear').forEach(el => observer.observe(el));
+
+    // Active nav
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        let cur = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+        document.querySelectorAll('.nav-link').forEach(l => {
+            l.style.color = l.getAttribute('href') === '#' + cur ? '#10b981' : '#94a3b8';
+        });
+    });
+</script>
 
 </body>
-
 </html>
